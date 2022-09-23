@@ -1,6 +1,6 @@
 package com.example.moxylessontwo
 
-import android.view.LayoutInflater
+
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType

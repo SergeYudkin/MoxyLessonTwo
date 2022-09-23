@@ -1,9 +1,9 @@
 package com.example.moxylessontwo
 
-import moxy.InjectViewState
+
 import moxy.MvpPresenter
 
-@InjectViewState
+
 class CountersPresenter(private val model: CountersModels): MvpPresenter<MainView>() {
 
     override fun onFirstViewAttach(){
