@@ -1,18 +1,21 @@
 package com.example.moxylessontwo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moxylessontwo.databinding.ActivityMainBinding
+import com.example.moxylessontwo.main.UserAdapter
+import com.example.moxylessontwo.model.GithubUser
+import com.example.moxylessontwo.repository.impl.CountersRepository
+import com.example.moxylessontwo.repository.impl.GithubRepositoryImpl
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 
 class MainActivity : MvpAppCompatActivity(), MainView {
 
     private lateinit var binding: ActivityMainBinding
+    private val adapter = UserAdapter()
 
-    private val presenter by moxyPresenter { CountersPresenter(CountersModels()) }
-
-
+    private val presenter by moxyPresenter { CountersPresenter(GithubRepositoryImpl()) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,29 +23,18 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        with(binding){
-            buttonBoomOne.setOnClickListener {
-                presenter.onCounterOneClick()
-            }
-            buttonBoomSecond.setOnClickListener {
-                presenter.onCounterTwoClick()
-            }
-            buttonBoomThird.setOnClickListener {
-                presenter.onCounterThirdClick()
-            }
+        with(binding) {
+            gitHubUsers.layoutManager = LinearLayoutManager(this@MainActivity)
+            gitHubUsers.adapter = adapter
+
         }
     }
 
-
-    override fun setCounterOneText(counter: String) = with(binding) {
-        messageOne.text = counter
+    override fun initList(list: List<GithubUser>) {
+        adapter.users = list
     }
 
-    override fun setCounterTwoText(counter: String) = with(binding) {
-        messageSecond.text = counter
-    }
 
-    override fun setCounterThirdText(counter: String) = with(binding) {
-        messageThird.text = counter
-    }
+
+
 }

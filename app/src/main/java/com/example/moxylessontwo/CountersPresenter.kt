@@ -1,28 +1,15 @@
 package com.example.moxylessontwo
 
 
+import com.example.moxylessontwo.repository.GithubRepository
 import moxy.MvpPresenter
 
 
-class CountersPresenter(private val model: CountersModels): MvpPresenter<MainView>() {
+class CountersPresenter(private val repository: GithubRepository): MvpPresenter<MainView>() {
 
     override fun onFirstViewAttach(){
         super.onFirstViewAttach()
-    }
-
-    fun onCounterOneClick(){
-        val newValue = model.next(0)
-        viewState.setCounterOneText(newValue.toString())
-    }
-
-    fun onCounterTwoClick(){
-        val newValue = model.next(1)
-        viewState.setCounterTwoText(newValue.toString())
-    }
-
-    fun onCounterThirdClick(){
-        val newValue = model.next(2)
-        viewState.setCounterThirdText(newValue.toString())
+        viewState.initList(repository.getUsers())
     }
 
 

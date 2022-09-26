@@ -1,6 +1,7 @@
 package com.example.moxylessontwo
 
 
+import com.example.moxylessontwo.model.GithubUser
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType
@@ -9,13 +10,7 @@ import moxy.viewstate.strategy.StateStrategyType
 interface MainView: MvpView {
 
 
-
-    fun setCounterOneText(counter: String)
-
-    fun setCounterTwoText(counter: String)
-
-    fun setCounterThirdText(counter: String)
-
+    fun initList(list: List<GithubUser>)
 
 
 }

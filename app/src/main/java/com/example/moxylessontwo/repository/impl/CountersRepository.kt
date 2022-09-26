@@ -1,6 +1,6 @@
-package com.example.moxylessontwo
+package com.example.moxylessontwo.repository.impl
 
-class CountersModels {
+class CountersRepository {
 
     private val counters = mutableListOf(0, 0 ,0 )
 
